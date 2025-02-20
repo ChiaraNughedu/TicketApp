@@ -4,6 +4,6 @@
     {
         public Ospite Ospite { get; set; }
         public string Sala { get; set; }  
-        public string TipoBiglietto { get; set; }  /
+        public string TipoBiglietto { get; set; }  
     }
 }

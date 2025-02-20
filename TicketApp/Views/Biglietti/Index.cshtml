@@ -1,0 +1,62 @@
+﻿@model List<TicketApp.Models.Sala>
+
+<h2>Vendita Biglietti</h2>
+
+<form asp-action="Prenota" method="post">
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="nome" required />
+    </div>
+    <div>
+        <label>Cognome:</label>
+        <input type="text" name="cognome" required />
+    </div>
+    <div>
+        <label>Sala:</label>
+        <select name="sala" required>
+            <option value="">Seleziona una sala</option>
+            @foreach (var sala in Model)
+            {
+                <option value="@sala.NomeSala">@sala.NomeSala (@sala.BigliettiVenduti / @Sala.CapienzaMassima posti)</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Tipo Biglietto:</label>
+        <select name="tipoBiglietto" required>
+            <option value="Intero">Intero</option>
+            <option value="Ridotto">Ridotto</option>
+        </select>
+    </div>
+    <button type="submit">Prenota</button>
+</form>
+
+<h3>Stato delle Sale</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Sala</th>
+            <th>Biglietti Venduti</th>
+            <th>Biglietti Ridotti</th>
+            <th>Capienza Massima</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sala in Model)
+        {
+            <tr>
+                <td>@sala.NomeSala</td>
+                <td>@sala.BigliettiVenduti</td>
+                <td>@sala.BigliettiRidotti</td>
+                <td>@Sala.CapienzaMassima</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (ViewBag.Messaggio != null)
+{
+    <div style="color:red;">
+        @ViewBag.Messaggio
+    </div>
+}
